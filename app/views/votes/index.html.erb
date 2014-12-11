@@ -1,0 +1,9 @@
+<h1>Votes</h1>
+
+<% @votes.each do |vote| %>
+  <div>
+    <%= vote.user %>
+    <%= vote.numVotes %>
+    <%= vote.created_at %>
+  </div>
+<% end %>

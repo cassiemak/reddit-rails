@@ -1,0 +1,11 @@
+<h1>Enter your comment here</h1>
+
+<%= form_for @comment do |c| %>
+  <%= c.label "Your Name" %>
+  <%= c.text_field :user %>
+
+  <%= c.label :message %>
+  <%= c.text_field :message %>
+
+  <%= c.submit "Submit" %>
+<% end %>

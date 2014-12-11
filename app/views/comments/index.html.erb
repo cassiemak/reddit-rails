@@ -1,0 +1,12 @@
+<h1>All my comments</h1>
+
+<% @comments.each do |comment| %>
+  <%= link_to comment do %>
+    <div>
+      <%= comment.id %>
+      <%= comment.user %>
+      <%= comment.message %>
+      <%= comment.created_at %>
+    </div>
+  <% end %>
+<% end %>
