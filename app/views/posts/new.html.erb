@@ -1,7 +1,10 @@
 <h1>Please enter your post here</h1>
 
 <!-- creating the form -->
-<%= form_for @cat, :method=> :post do |f| %>
+<%= simple_form_for @cat, :method=> :post do |f| %>
+
+  <%= flash[:message] %>
+
   <%= f.label :title %>
   <%= f.text_field :title %>
 

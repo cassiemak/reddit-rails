@@ -12,9 +12,13 @@ class PostsController < ApplicationController
 # sending the entry to the table
     def create
       # post_params is define below
-      post = Post.new(post_params)
+      post = current_user.posts.new(post_params)
       if post.save
           redirect_to posts_path
+      else
+        flash[:message] = post.errors.messages
+        
+        redirect_to :back
       end
     end
 
@@ -24,6 +28,7 @@ class PostsController < ApplicationController
 
       # this basically retrieve the post with a specific id
       @post = Post.find(params[:id])
+      @comment = Comment.new
     end
 
 # this is only for internal use
@@ -34,8 +39,6 @@ class PostsController < ApplicationController
           params.require(:post).permit(:title, :url)
     end
 
-    private
-      def comment_params
-          params.require(:comment).permit(:user, :message)
-      end
+
 end
+3

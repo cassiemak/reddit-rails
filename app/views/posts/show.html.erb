@@ -1,2 +1,34 @@
-<h1><%= @post.title %></h1>
-<h1><%= @post.url %></h1>
+<h1>Post: </h1>
+
+<h5>Title: <%= @post.title %></h5>
+<p>Url: <%= @post.url %></p>
+<p>Owner: <%= @post.user.email %></p>
+<p>Date Time: <%= @post.created_at %></p>
+<!-- we want to be able to create comments here -->
+<!-- form here -->
+
+<%= form_for @comment do |f| %>
+<%= f.label :message %>
+<p><%= f.text_field :message %></p>
+<%= f.text_field :post_id, :value => @post.id, :hidden => true %>
+<%= f.submit "Send" %>
+<% end %>
+
+<!-- I want to list out all the comments made for htis post -->
+  <h1>Comments</h1>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Content</th>
+        <th>Owner Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @post.comments.each do |comment| %>
+      <tr>
+        <td><%= comment.message %></td>
+        <td><%= comment.user.email %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
