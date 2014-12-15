@@ -8,11 +8,13 @@
 <%= button_to "Vote on Post with ID=2", "http://localhost:3000/post_votes/2"%>
 
 <h2>
-  <%= "Number of votes for this post: #{@post.post_votes.count}" %>
+  Number of votes for this post: 
+  <span id="vote_count"><%= @post.post_votes.count %>
+  </span>
 </h2>
 
 <h1>
-<%= link_to("THUMBS UP", "/post_votes/#{@post.id}", :method => :post, :class => "", :id => "") %>
+<%= link_to("THUMBS UP","#", :class => "btn_vote", 'data-id' => @post.id) %>
 </h1>
 
 <!-- we want to be able to create comments here -->

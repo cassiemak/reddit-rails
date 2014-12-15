@@ -1,4 +1,7 @@
 class PostVotesController < ApplicationController
+  # ignore authenticity token
+  # skip_before_filter :verify_authenticity_token
+
   def create
     # finds the post, given an url with right format
     # '/post_votes/:id'
