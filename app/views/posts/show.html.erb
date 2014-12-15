@@ -4,6 +4,9 @@
 <p>Url: <%= @post.url %></p>
 <p>Owner: <%= @post.user.email %></p>
 <p>Date Time: <%= @post.created_at %></p>
+
+<%= button_to "Vote on Post with ID=2", "http://localhost:3000/post_votes/2"%>
+
 <!-- we want to be able to create comments here -->
 <!-- form here -->
 

@@ -12,3 +12,16 @@
   display: flex;
   align-items: center;*/
 }
+
+.header {
+  display: inline-block;
+  padding: 20px;
+}
+
+.left-header {
+  text-align: left;
+}
+
+.right-header{
+  text-align: right;  
+}

@@ -20,8 +20,11 @@ Rails.application.routes.draw do
   # GET, POST, PATCH, DELETE
 
   resources :comments
-
   resources :users
+
+  # give the post :id, use the Post Vote Controller to create a vote
+  # this is a 'post requrest', it is different from a 'get request'
+  post 'post_votes/:id', to: 'post_votes#create'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="header col-xs-4 left-header">
+        Reddit
+      </div>
+      <div class="header col-xs-8 right-header">
+        <% if current_user %>
+          <!-- <%= current_user.to_yaml %> -->
+          <%= current_user.email %>
+          <!-- when not specify, the default method for button_to is always POST -->
+          <%= button_to "Sign Out", destroy_user_session_path, :method => :delete %>
+        <% else %>
+          <!-- when not specify, the default method for link_to is always GET -->
+          <%= link_to "Sign In", new_user_session_path %>
+          <%= link_to "Sign up", new_user_registration_path %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
