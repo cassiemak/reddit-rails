@@ -4,7 +4,7 @@
   <%= link_to comment do %>
     <div>
       <%= comment.id %>
-      <%= comment.user %>
+      <%= comment.user.email %>
       <%= comment.message %>
       <%= comment.created_at %>
     </div>

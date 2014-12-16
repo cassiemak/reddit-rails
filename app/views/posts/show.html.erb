@@ -21,10 +21,10 @@
 <!-- form here -->
 
 <%= form_for @comment do |f| %>
-<%= f.label :message %>
-<p><%= f.text_field :message %></p>
-<%= f.text_field :post_id, :value => @post.id, :hidden => true %>
-<%= f.submit "Send" %>
+  <%= f.label :message %>
+  <p><%= f.text_field :message %></p>
+  <%= f.text_field :post_id, :value => @post.id, :hidden => true %>
+  <%= f.submit "Send", :class => "btn_comment" %>
 <% end %>
 
 <!-- I want to list out all the comments made for htis post -->
@@ -45,3 +45,4 @@
     <% end %>
     </tbody>
   </table>
+
