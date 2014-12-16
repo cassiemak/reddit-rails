@@ -2,22 +2,29 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
 
-  def index
-    @comments = Comment.all
-  end
+  # def index
+  #   @comments = Comment.all
+  # end
 
-  def new
-    @comment = Comment.new
-  end
+  # def new
+  #   @comment = Comment.new
+  # end
 
   def create
-    comment = current_user.comments.new(comment_params)
+    post = Post.find(params[:id])
+
+    # comment = current_user.Comment.new(comment_params)
+    comment = Comment.new( :user => current_user, :post => post, :message => params[:message])
+
     if comment.save
-      redirect_to comment.post
+      # redirect_to comment.post
+      render json: comment, status: 201
     else
       redirect_to :back
     end
+
   end
+
 
   def show
     @comment = Comment.find(params[:id])

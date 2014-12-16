@@ -1,0 +1,30 @@
+// # Place all the behaviors and hooks related to the matching controller here.
+// # All this logic will automatically be available in application.js.
+// # You can use CoffeeScript in this file: http://coffeescript.org/
+
+$(document).ready(function(){
+  $(document).on('click', '.btn_comment', function(e){
+    e.preventDefault();
+    $.ajax({
+      type: 'post',
+
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      url: '/comments',
+      data: {
+        message: $('#comment_message').val(),
+        id: $('#comment_post_id').val()
+        // post_id: $('#comment_post_id').val()
+      },
+      success: function(response, status){ 
+        // console.log("success!");
+        // console.log(response);
+        // console.log(status);
+        if (status == 'success'){
+          console.log(response);
+          // when sucessful, create comment in html
+          $('.table').append("<tr><td>"+response.message + "</td><td>" + response.user.email + " </td></tr>");
+        }
+      }
+    });
+  });
+});
