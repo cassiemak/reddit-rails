@@ -1,4 +1,12 @@
 class PostsController < ApplicationController
+    # we are going to check the following conditions before we do anything in this controller
+    before_action :authenticate_user!, only: [:new, :create]
+    # or, does the same thing, only something, means except something else
+    before_action :authenticate_user!, except: [:index, :show]
+
+    # authenticate_user is povided by Devise, again Devise a library (gem) in Ruby
+
+    # shows all the posts
     def index
       #how do i get data here
       @posts = Post.all

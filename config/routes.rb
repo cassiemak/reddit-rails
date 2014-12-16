@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'static_pages#index'
+  root 'posts#index'
 
   # get '/posts' => 'posts#index'
   # get '/posts/new' => "posts#new"
