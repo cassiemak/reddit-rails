@@ -13,6 +13,7 @@ $(document).ready(function(){
       data: {
         message: $('#comment_message').val(),
         id: $('#comment_post_id').val()
+        // post_id: $(this).data('postid') <this works too
         // post_id: $('#comment_post_id').val()
       },
       success: function(response, status){ 

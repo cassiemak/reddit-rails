@@ -15,6 +15,7 @@ class CommentsController < ApplicationController
 
     # comment = current_user.Comment.new(comment_params)
     comment = Comment.new( :user => current_user, :post => post, :message => params[:message])
+    comment = current_user.comments.new(:post => post, :message => params[:message])
 
     if comment.save
       # redirect_to comment.post
@@ -31,7 +32,7 @@ class CommentsController < ApplicationController
   end
 
   private
-    def comment_params
+    def x
       params.require(:comment).permit(:message, :post_id)
     end
 

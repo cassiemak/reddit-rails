@@ -20,7 +20,7 @@
 <!-- we want to be able to create comments here -->
 <!-- form here -->
 
-<%= form_for @comment do |f| %>
+<%= form_for @comment, :remote => true do |f| %>
   <%= f.label :message %>
   <p><%= f.text_field :message %></p>
   <%= f.text_field :post_id, :value => @post.id, :hidden => true %>
