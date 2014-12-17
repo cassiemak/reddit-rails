@@ -22,9 +22,10 @@
 
 <%= form_for @comment, :remote => true do |f| %>
   <%= f.label :message %>
-  <p><%= f.text_field :message %></p>
+  <p><%= f.text_field :message, :id => "messageContent" %></p>
   <%= f.text_field :post_id, :value => @post.id, :hidden => true %>
-  <%= f.submit "Send", :class => "btn_comment", 'data-id' => @post.id %>
+  <%= f.submit "Send" %>
+  <div id="error_message"></div>
 <% end %>
 
 <!-- I want to list out all the comments made for htis post -->
@@ -36,12 +37,9 @@
         <th>Owner Email</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="comments_list">
       <% @post.comments.each do |comment| %>
-      <tr>
-        <td><%= comment.message %></td>
-        <td><%= comment.user.email %></td>
-      </tr>
+      <%= render :partial => "comment", :locals => {:comment => comment} %>
     <% end %>
     </tbody>
   </table>

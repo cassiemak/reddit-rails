@@ -1,0 +1,9 @@
+console.log("it fails");
+
+// @comment = variable
+// .errors.message = default error messages
+$('#error_message').html("<%= @comment.errors.messages[:message][0]  %>")
+
+// jquery object, html shows, variable - comment, function error messages hashes, key :message, array [index]
+
+// $('#error_message').html("<%= @comment.errors.messages  %>")

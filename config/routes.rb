@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   # give the post :id, use the Post Vote Controller to create a vote
   # this is a 'post requrest', it is different from a 'get request'
   post 'post_votes/:id', to: 'post_votes#create'
-  post 'comments/', to: 'comments#create'
+  # post 'comments', to: 'comments#create'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -3,14 +3,18 @@
   <div>
     <table class="table table-condensed">
       <tr>
-        <th>User email</th>
-        <th>ID</th>
+        <th>User ID</th>
+        <th>User Email</th>
         <th>Last Log In</th>
       </tr>
       <% @users.each do |user| %>
       <tr>
-        <td><%= user.id %></td>
-        <td><%= link_to user do %><%= user.email %><% end %></td>
+        <td>
+          <%= link_to user do %>
+            User Number <%= user.id %>
+          <% end%>
+        </td>
+        <td><%= user.email %></td>
         <td><%= user.last_sign_in_at %></td>
       </tr>
     </table>

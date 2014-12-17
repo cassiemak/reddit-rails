@@ -4,6 +4,7 @@
 
 $(document).ready(function(){
   $(document).on('click', '.btn_comment', function(e){
+    console.log("ajax here!");
     e.preventDefault();
     $.ajax({
       type: 'post',
