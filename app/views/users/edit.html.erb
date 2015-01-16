@@ -1,0 +1,9 @@
+<h2>Uploading Avatar</h2>
+<%= form_for @user, :html => { :multipart => true } do |form| %>
+  <%= form.file_field :avatar %>
+  <%= form.submit :class => "btn" %>
+<% end %>
+
+<%= image_tag @user.avatar.url %>
+<%= image_tag @user.avatar.url(:medium) %>
+<%= image_tag @user.avatar.url(:thumb) %>
