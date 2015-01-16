@@ -21,20 +21,23 @@
     </ul>
 
     <!-- addPrice() will look for a function inside PostCtr -->
-    <form ng-submit="addPrice()">
+    <form ng-submit="addPrice()" name="priceForm">
       <!-- you can now refer to scope. newPrice in your PostCtr -->
-      <input type="text" placeholder="Add a new price" ng-model="newPrice">
+      <input type="number" placeholder="Add a new price" ng-model="newPrice" ng-maxlength="3" min="0">
     </form>
-
     <p>Total Price: {{ sum }}</p>
-    
-    <p ng-repeat="price in prices">
-      var sum =+ {{price}}
-    </p>
-      
+
+
 </div>
 
+----------------------------------------------------------
+<div ng-controller="CompanyCtrl">
+  <input type="text" placeholder="Search for companies" ng-model="companyName">
 
+  <ul ng-repeat="company in companies |filter:companyName ">
+    <li>{{ company }}</li>
+  </ul>
+</div>
 
 
 ==========================================================

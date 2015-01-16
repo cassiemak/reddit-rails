@@ -9,12 +9,42 @@ var app = angular.module('kitty', []);
 
 // Naming convertion for controller -> "NameCtrl"
 app.controller('PostCtrl', function($scope){
-  // this is NOT jquery
   $scope.brand = "coca-cola";
   $scope.prices = [1,4,5,6,7,65];
+  $scope.sum = addition($scope.prices);
+
 
   $scope.addPrice = function(){
+    if ($scope.priceForm.$valid && $scope.newPrice != null){
     $scope.prices.push($scope.newPrice);
+    $scope.sum = addition($scope.prices);
+    } else {
+    alert ('form invalid!');
+    }
     $scope.newPrice = "";
   }
+
+
+  function addition(arr){
+    // for (var i=0; i < $scope.prices.length(); i++){
+    //   $scope.sum += $scope.prices[i];
+    // }
+    var total = 0;
+    arr.forEach(function(item){
+      total += item;
+    })
+    return total;
+  }
+
+
+  $scope.ifNumber = function(){
+    $scope.newPrice; 
+  }
+
 });
+
+
+app.controller('CompanyCtrl', function($scope){
+  $scope.companies = ["Apple", "Microsoft", "Google", "Alibaba", "Tencent"];
+})
+
