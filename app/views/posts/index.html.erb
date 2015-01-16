@@ -1,3 +1,61 @@
+<!-- Below 2 method does the same thing and you can see the difference, angular more powerful and simplier -->
+----------------------------------------------------------
+<h1>Angular</h1>
+<input type="text" placeholder="Please type something" ng-model="name">
+
+<h3>{{ name }}</h3>
+
+<input type="text" placeholder="Give me the price" ng-model="price">
+<h3>{{ price }}</h3>
+
+----------------------------------------------------------
+
+<h3>Connect Angular Controller Defined in JS to View</h3>
+
+<div ng-controller="PostCtrl">
+    {{ brand }}
+    <!-- {{ prices }} -->
+      <!-- track by $index, without this line, only be able to store unique value -->
+    <ul ng-repeat="price in prices track by $index">
+      <li>{{ price }}</li>
+    </ul>
+
+    <!-- addPrice() will look for a function inside PostCtr -->
+    <form ng-submit="addPrice()">
+      <!-- you can now refer to scope. newPrice in your PostCtr -->
+      <input type="text" placeholder="Add a new price" ng-model="newPrice">
+    </form>
+
+    <p>Total Price: {{ sum }}</p>
+    
+    <p ng-repeat="price in prices">
+      var sum =+ {{price}}
+    </p>
+      
+</div>
+
+
+
+
+==========================================================
+
+<h1>Jquery</h1>
+
+<input type="text" placeholder="Please type something" id="name_input">
+
+<h3 id="name_output"></h3>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#name_input').keyup(function(){
+      $('#name_output').text($('#name_input').val());
+    });
+  })
+</script>
+
+
+
+
 <h1>A List of Posts</h1>
   <table class="table table-striped table-responsive">
     <thead class="heading">
