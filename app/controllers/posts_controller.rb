@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     def index
       #how do i get data here
       @posts = Post.all
+      # render :json
     end
 
 # creating form for user to submit new posts
