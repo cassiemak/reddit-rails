@@ -13,3 +13,10 @@
     <td><a ng-href="#{{post.link}}">Link</a></td>
   </tr>
 </table>
+
+<form ng-submit="addNewPost()" name="newpostform">
+  <label></label>
+  <input type="text" placeholder="Add New Post Title" ng-model="newPost">
+  <input type="text" placeholder="URL" ng-model="newURL">
+  <button>Submit</button>
+</form>

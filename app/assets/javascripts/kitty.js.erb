@@ -22,10 +22,24 @@ app.controller('PostListCtrl', ['$scope', '$http', function($scope, $http){
   $http.get('/posts.json').success(function(data, status, xhr){
     $scope.posts = data.posts;
     console.log($scope.posts);
-    console.log (data);
-    console.log (status);
-    console.log (xhr);
+    console.log(data);
+    console.log(status);
+    console.log(xhr);
   });
+
+  $scope.addNewPost = function(){
+
+    console.log("clicked submit");
+
+    var newPostdata = {title: $scope.newPost, url: $scope.newURL};
+    $http.post('/posts', newPostdata).success(function(data, status, xhr){
+    // $scope.newpost = data;
+      console.log('post success!');
+      $scope.posts.push(newPostdata);
+      $scope.newPost ='';
+      $scope.newURL = '';
+    })
+  }
 }])
 
 app.controller('PostItemCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
@@ -33,9 +47,16 @@ app.controller('PostItemCtrl', ['$scope', '$http', '$routeParams', function($sco
   $http.get('/posts/'+ $routeParams.id +'.json').success(function(data, status, xhr){
     console.log('id is:', $routeParams);
     $scope.post = data;
+
   })
 }])
 
+app.controller('NewItemCtrl', ['$scope', '$http', function($scope, $http){
+  console.log('NewItemCtrl works!')
+  $http.get('/posts/new').success(function(data, status, xhr){
+    $scope.newpost = data; 
+  })
+}])
 
 // Jan 19, auglar cond't
 // $routeProvider.when('',{}).when('',{}).when('',{})
