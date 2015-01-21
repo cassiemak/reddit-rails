@@ -1,16 +1,23 @@
-<h1>Hello World!</h1>
+<h1>All Posts</h1>
 
 <!-- You don't need to call the controller because it's already defined in app.config -->
-<ul>
+<!-- <ul>
   <li ng-repeat="item in words track by $index">{{ item }}</li>
-</ul>
+</ul> -->
 
 <table class="table table-condensed">
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>URL</th>
+    <th>Link to Post</th>
+  </tr>
   <tr ng-repeat="post in posts">
-    <td>{{ post.title }}</td>
-    <td ng-if="post.url">{{ post.url }}</td>
+    <td><a ng-href="#{{ post.link}}">{{ post.title }}</a></td>
+    <td>{{ post.user_id }}</td>
+    <td ng-if="post.url"><a href="{{post.url}}">{{ post.url }}</a></td>
     <td ng-if="!post.url">No URL</td>
-    <td><a ng-href="#{{post.link}}">Link</a></td>
+    <td><a ng-href="#{{post.link}}">Post</a></td>
   </tr>
 </table>
 
@@ -18,5 +25,5 @@
   <label></label>
   <input type="text" placeholder="Add New Post Title" ng-model="newPost">
   <input type="text" placeholder="URL" ng-model="newURL">
-  <button>Submit</button>
+  <button class="btn btn-sm btn-danger">Submit</button>
 </form>

@@ -1,5 +1,32 @@
-Hello!
+<img src="http://i.imgur.com/vKk9E6R.jpg" ng-if="!ready">
 
-<h1> {{post.title}} - </h1>
-  <p>{{ post.url}}</p>
+<div ng-if="ready">
+  <h1>Hello World!</h1> 
 
+  <button class="btn btn-sm btn-default"><a ng-href="#/post-list">HOME</a></button>
+
+  <h2> {{post.title}} - {{ post.url}}</h2>
+
+  <p>Post votes: {{ num }}</p>
+  <button ng-submit="addvote()">Like</button>
+
+  <table class="table table-condensed">
+    <tr>
+      <th>Author</th>
+      <th>Message</th>
+    </tr>
+    <tr ng-repeat="comment in comments">
+      <td>{{ comment.user.email }}</td>
+      <td ng-if="comment.message">{{ comment.message }}</td>
+      <!-- <td ng-if="!post.url">No URL</td> -->
+      <!-- <td><a ng-href="#{{post.link}}">Link</a></td> -->
+    </tr>
+  </table>
+
+  <form ng-submit="addNewComment()" name="newcommentform">
+    <label>Add Your Comment</label>
+    <input type="text" placeholder="Enter Your Name" ng-model="newcommentauthor">
+    <input type="text" placeholder="Comment" ng-model="newcomment">
+    <button class="btn btn-sm btn-warning">Submit</button>
+  </form>
+</div>

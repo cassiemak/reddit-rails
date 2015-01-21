@@ -4,6 +4,8 @@
 // successfully initalize angular with no extra modules. 
 var app = angular.module('kitty', ['ngRoute']);
 
+// Jan 19, auglar cond't
+// $routeProvider.when('',{}).when('',{}).when('',{})
 app.config(['$routeProvider',function($routeProvider) {
   $routeProvider.when('/post-list', {
     templateUrl: "<%= asset_path('post-list.html') %>",
@@ -15,6 +17,7 @@ app.config(['$routeProvider',function($routeProvider) {
   })
 }])
 
+// PostList Controller - Index of all posts 
 app.controller('PostListCtrl', ['$scope', '$http', function($scope, $http){
   var myArray = ['hello', 'kitty', 'world'];
   $scope.words = myArray;
@@ -26,53 +29,63 @@ app.controller('PostListCtrl', ['$scope', '$http', function($scope, $http){
     console.log(status);
     console.log(xhr);
   });
-
+// create new posts form/ function in index of all posts
   $scope.addNewPost = function(){
-
     console.log("clicked submit");
 
-    var newPostdata = {title: $scope.newPost, url: $scope.newURL};
+    var newPostdata = {
+      post: {
+        title: $scope.newPost, 
+        url: $scope.newURL
+      }
+    };
+
     $http.post('/posts', newPostdata).success(function(data, status, xhr){
-    // $scope.newpost = data;
       console.log('post success!');
-      $scope.posts.push(newPostdata);
+    // $scope.newpost = data;
+      $scope.posts.push(newPostdata.post);
       $scope.newPost ='';
       $scope.newURL = '';
     })
   }
 }])
 
-app.controller('PostItemCtrl', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+// Single Post Controller
+app.controller('PostItemCtrl',['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+  $scope.ready = false;
   console.log('HIHI');
   $http.get('/posts/'+ $routeParams.id +'.json').success(function(data, status, xhr){
     console.log('id is:', $routeParams);
     $scope.post = data;
-
+    $scope.comments = data.comments;
+    console.log($scope.comments);
+    $scope.ready = true;
   })
+// create new comment function
+  $scope.addNewComment = function(){
+    console.log('new comment clicked');
+    var newCommentdata = {
+      user: $scope.newcommentauthor,
+      message: $scope.newcomment,
+      // user_id: $scope.user_id,
+      post_id: $routeParams.id,
+    };
+
+    console.log(newCommentdata);
+    $http.post('/comments/', newCommentdata ).success(function(data, status, xhr){
+      console.log($scope.comments);
+      $scope.comments.push(newCommentdata);
+      $scope.newcommentauthor = "";
+    })
+  }
 }])
 
-app.controller('NewItemCtrl', ['$scope', '$http', function($scope, $http){
-  console.log('NewItemCtrl works!')
-  $http.get('/posts/new').success(function(data, status, xhr){
-    $scope.newpost = data; 
-  })
-}])
-
-// Jan 19, auglar cond't
-// $routeProvider.when('',{}).when('',{}).when('',{})
-// app.config(function($routeProvider){
-
-// });
-
-// app.controller('PostListCtrl', function($scope, $http){
-//   // alert('hihi'); 
-
-// });
-
-// app.controller('PostItemCtrl', function($scope, $http, $routeParams){
-
-// })
-
+// app.controller('PostItemCtrl', ['$scope', '$http', function($scope, $http){
+//   console.log('PostItemCtrl works!');
+//   $http.get('/comments').success(function(data, status, xhr){
+//     // $scope.comment = data;
+//   })
+// }])
 
 
 

@@ -17,7 +17,7 @@ class Post < ActiveRecord::Base
 
   validate :spam_free
 
-  validate :only_twenty_posts_can_ever_be_created
+  # validate :only_twenty_posts_can_ever_be_created
 
 
   private
